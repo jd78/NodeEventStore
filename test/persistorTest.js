@@ -6,16 +6,15 @@ const Persistor = require("../lib/persistor");
 const inMemoryAdapter = require("../lib/in-memory-persistence-adapter");
 
 describe('Save Aggregate', function() {
-    it('Create aggregate', function(done) {
+    it('Create aggregate', function() {
         let a = aggregate.create(1);
         a.initialize('name');
         a.updateName('jd');
         
         let persistor = new Persistor(inMemoryAdapter);
         
-        persistor.save(a).then(()=>{
+        return persistor.save(a).then(()=>{
             a.uncommittedEvents.length.should.equal(0);
-            done();
         });
     });
 })
