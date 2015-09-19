@@ -2,37 +2,20 @@
 
 require("should");
 const aggregate = require("./aggregate/demo");
+const Persistor = require("../lib/persistor");
+const inMemoryAdapter = require("../lib/in-memory-persistence-adapter");
 
-describe('Aggregate Test', function() {
-    it('Create aggregate', function() {
+describe('Save Aggregate', function() {
+    it('Create aggregate', function(done) {
         let a = aggregate.create(1);
-        a.id.should.equal(1);
+        a.initialize('name');
+        a.updateName('jd');
+        
+        let persistor = new Persistor(inMemoryAdapter);
+        
+        persistor.save(a).then(()=>{
+            a.uncommittedEvents.length.should.equal(0);
+            done();
+        });
     });
-
-    it('update aggregate', function() {
-        let a = aggregate.create(1);
-        a.initialize('test');
-        a.name.should.equal('test');
-
-        a.uncommittedEvents.length.should.equal(1);
-        let evt = a.uncommittedEvents[0];
-
-        evt.streamId.should.equal(1);
-        evt.version.should.equal(1);
-        evt.eventType.should.equal('DemoCreated');
-        evt.payload.should.equal('{"name":"test","id":1,"version":1}');
-    });
-
-    it('update aggregate twice', function() {
-        let a = aggregate.create(1);
-        a.initialize('test');
-        a.updateName('jd')
-        
-        a.name.should.equal('jd');
-        
-        a.uncommittedEvents.length.should.equal(2);
-        
-        let evt = a.uncommittedEvents[1];
-        evt.version.should.equal(2);
-    })
 })
