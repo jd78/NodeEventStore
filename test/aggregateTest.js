@@ -35,4 +35,33 @@ describe('Aggregate Test', function() {
         let evt = a.uncommittedEvents[1];
         evt.version.should.equal(2);
     })
+    
+    it('if snapshot not defined, ignore snapshot', function() {
+        let a = aggregate.create(1);
+        a.initialize('test');
+        a.updateName('jd')
+        
+        a.uncommittedSnapshots.length.should.equal(0);
+    })
+    
+    it('create snapshot', function() {
+        let a = aggregate.create(1, 2);
+        a.initialize('test');
+        a.updateName('jd')
+        
+        a.uncommittedSnapshots.length.should.equal(1);
+        
+        let snapshots = a.uncommittedSnapshots[0];
+        snapshots.version.should.equal(2);
+        snapshots.streamId.should.equal(1);
+        snapshots.payload.should.equal('{"name":"jd"}');
+    })
+    
+    it('if version does not reach the thresholt, do not create the snapshot', function() {
+        let a = aggregate.create(1, 3);
+        a.initialize('test');
+        a.updateName('jd')
+        
+        a.uncommittedSnapshots.length.should.equal(0);
+    })
 })
