@@ -7,36 +7,36 @@ const NameUpdated = require("../dto/nameUpdated");
 let _name;
 
 class Demo extends Aggregate {
-    
-    constructor(id){
+
+    constructor(id) {
         super(id);
         _name = null;
     }
-    
-    static create(id){
+
+    static create(id) {
         return new Demo(id);
     }
     
     //Query
-    get name(){
+    get name() {
         return _name;
     }
     
     //Mutators
-    initialize(name){
+    initialize(name) {
         super.raiseEvent(new DemoCreated(name));
     }
-    
-    updateName(name){
+
+    updateName(name) {
         super.raiseEvent(new NameUpdated(name));
     }
     
     //Apply
-    DemoCreated(payload){
+    DemoCreated(payload) {
         _name = payload.name;
     }
-    
-    NameUpdated(payload){
+
+    NameUpdated(payload) {
         _name = payload.name;
     }
 }
