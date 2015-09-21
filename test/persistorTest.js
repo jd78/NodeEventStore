@@ -17,6 +17,22 @@ describe('Save Aggregate', function () {
             a.uncommittedEvents.length.should.equal(0)
         })
     })
+    
+    it('Create aggregate with snapshot', function () {
+        let a = aggregate.create(1, 2)
+        a.initialize('name')
+        a.updateName('jd')
+        
+        a.uncommittedEvents.length.should.equal(2);
+        a.uncommittedSnapshots.length.should.equal(1);
+        
+        let persistor = new Persistor(inMemoryAdapter)
+
+        return persistor.save(a).then(() => {
+            a.uncommittedEvents.length.should.equal(0)
+            a.uncommittedSnapshots.length.should.equal(0)
+        })
+    })
 
     it('get aggregate', function () {
         let a = aggregate.create(1)
