@@ -37,6 +37,14 @@ describe('Save Aggregate', function () {
             a.uncommittedSnapshots.length.should.equal(0)
         })
     })
+    
+    it('get aggregate not found', function () {
+        let persistor = new Persistor(inMemoryAdapter, aggregate)
+    
+        return persistor.read(1).then(aggregate => {
+            (aggregate === null).should.be.true();
+        })
+    })
 
     it('get aggregate', function () {
         let a = aggregate.create(1)
