@@ -11,6 +11,8 @@
   "dependencies": {
     "guid": "0.0.12",
     "moment": "^2.10.6",
+    "node-cache": "^3.0.0",
+    "node-clone": "^0.1.1",
     "underscore": "^1.8.3"
   },
   "devDependencies": {
