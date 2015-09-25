@@ -6,11 +6,11 @@ const Persistor = require("../lib/persistor")
 const inMemoryAdapter = require("../lib/in-memory-persistence-adapter")
 const sinon = require("sinon")
 
-describe('Save Aggregate', function () {
+describe('Save Aggregate', () => {
 
     beforeEach(() => inMemoryAdapter.clean())
 
-    it('Create aggregate', function () {
+    it('Create aggregate', () => {
         let a = aggregate.create(1)
         a.initialize('name')
         a.updateName('jd')
@@ -22,7 +22,7 @@ describe('Save Aggregate', function () {
         })
     })
 
-    it('Create aggregate with snapshot', function () {
+    it('Create aggregate with snapshot', () => {
         let a = aggregate.create(1, 2)
         a.initialize('name')
         a.updateName('jd')
@@ -38,7 +38,7 @@ describe('Save Aggregate', function () {
         })
     })
     
-    it('get aggregate not found', function () {
+    it('get aggregate not found', () => {
         let persistor = new Persistor(inMemoryAdapter, aggregate)
     
         return persistor.read(1).then(aggregate => {
@@ -46,7 +46,7 @@ describe('Save Aggregate', function () {
         })
     })
 
-    it('get aggregate', function () {
+    it('get aggregate', () => {
         let a = aggregate.create(1)
         a.initialize('name')
         a.updateName('jd')
@@ -61,7 +61,7 @@ describe('Save Aggregate', function () {
         })
     })
 
-    it('get aggregate with snapshot', function () {
+    it('get aggregate with snapshot', () => {
         let a = aggregate.create(1, 2)
         a.initialize('name')
         a.updateName('name2')
