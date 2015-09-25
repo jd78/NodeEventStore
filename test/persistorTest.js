@@ -3,7 +3,7 @@
 require("should")
 const aggregate = require("./aggregate/demo")
 const Persistor = require("../lib/persistor")
-const inMemoryAdapter = require("../lib/in-memory-persistence-adapter")
+const inMemoryAdapter = require("../lib/in-memory-persistence")
 const sinon = require("sinon")
 const cache = require("../lib/cache")
 
