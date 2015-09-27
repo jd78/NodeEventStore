@@ -3,27 +3,29 @@
 const Aggregate = require("../../lib/aggregate")
 const DemoCreated = require("../dto/demoCreated")
 const NameUpdated = require("../dto/nameUpdated")
+const clone = require("clone")
 
-let _name
-
-let createSnapshot = () => {
-    return { name: _name }
+function DemoObj(){
+    this.name
 }
+
+let _demoObj
 
 class Demo extends Aggregate {
 
     constructor(id, snapshotEvery) {
         super(id, snapshotEvery)
-        _name = null
+        _demoObj = new DemoObj()
     }
     
     //Snapshot 
     snapshot() {
-        return createSnapshot()
+        console.log(clone(_demoObj))
+        return clone(_demoObj)
     }
 
     applySnapshot(payload) {
-        _name = payload.name //version should be passed into the create constructor, in undefined will be 0
+        _demoObj.name = payload.name //version should be passed into the create constructor, in undefined will be 0
     }
     //end
 
@@ -33,7 +35,7 @@ class Demo extends Aggregate {
     
     //Query
     get name() {
-        return _name
+        return _demoObj.name
     }
     
     //Mutators
@@ -47,11 +49,11 @@ class Demo extends Aggregate {
     
     //Event Apply
     DemoCreated(payload) {
-        _name = payload.name
+        _demoObj.name = payload.name
     }
 
     NameUpdated(payload) {
-        _name = payload.name
+        _demoObj.name = payload.name
     }
 }
 
