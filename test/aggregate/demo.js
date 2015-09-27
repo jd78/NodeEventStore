@@ -20,12 +20,11 @@ class Demo extends Aggregate {
     
     //Snapshot 
     snapshot() {
-        console.log(clone(_demoObj))
         return clone(_demoObj)
     }
 
     applySnapshot(payload) {
-        _demoObj.name = payload.name //version should be passed into the create constructor, in undefined will be 0
+        _demoObj.name = payload.name
     }
     //end
 

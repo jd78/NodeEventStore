@@ -16,8 +16,7 @@ describe('Save Aggregate', () => {
         a.initialize('name')
         a.updateName('jd')
 
-        let persistor = new Persistor(inMemoryAdapter)
-
+        let persistor = new Persistor()
         return persistor.save(a).then(() => {
             a.uncommittedEvents.length.should.equal(0)
         })
@@ -31,8 +30,7 @@ describe('Save Aggregate', () => {
         a.uncommittedEvents.length.should.equal(2);
         a.uncommittedSnapshots.length.should.equal(1);
 
-        let persistor = new Persistor(inMemoryAdapter)
-
+        let persistor = new Persistor()
         return persistor.save(a).then(() => {
             a.uncommittedEvents.length.should.equal(0)
             a.uncommittedSnapshots.length.should.equal(0)
@@ -41,7 +39,7 @@ describe('Save Aggregate', () => {
     
     it('get aggregate not found', () => {
         cache.removeAll()
-        let persistor = new Persistor(inMemoryAdapter, aggregate)
+        let persistor = new Persistor(aggregate)
     
         return persistor.read(1).then(aggregate => {
             (aggregate === null).should.be.true();
@@ -53,7 +51,7 @@ describe('Save Aggregate', () => {
         a.initialize('name')
         a.updateName('jd')
 
-        let persistor = new Persistor(inMemoryAdapter, aggregate)
+        let persistor = new Persistor(aggregate)
 
         return persistor.save(a).then(() => {
             return persistor.read(1).then(aggregate => {
@@ -71,7 +69,7 @@ describe('Save Aggregate', () => {
         a.updateName('name4')
         a.updateName('final')
 
-        let persistor = new Persistor(inMemoryAdapter, aggregate)
+        let persistor = new Persistor(aggregate)
         let readSnapshotSpy = sinon.spy(inMemoryAdapter, "readSnapshot")
         var readEventsSpy = sinon.spy(inMemoryAdapter, "readEvents")
 
@@ -104,7 +102,7 @@ describe('Save Aggregate', () => {
         a.updateName('name4')
         a.updateName('final')
 
-        let persistor = new Persistor(inMemoryAdapter, aggregate)
+        let persistor = new Persistor(aggregate)
         let readSnapshotSpy = sinon.spy(inMemoryAdapter, "readSnapshot")
         var readEventsSpy = sinon.spy(inMemoryAdapter, "readEvents")
 
