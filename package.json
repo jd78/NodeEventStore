@@ -2,12 +2,29 @@
   "name": "NodeEventStore",
   "version": "1.0.0",
   "description": "Node.js Event Sourcing supporting snapshots, caching and hooks",
-  "main": "baseEvent.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jd78/NodeEventStore.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jd78/NodeEventStore.git/issues"
   },
   "author": "Gennaro Del Sorbo <gennaro.delsorbo@gmail.com>",
   "license": "MIT",
+  "files": [
+    "index.js",
+    "lib",
+    "LICENSE",
+    "README.md",
+    "demo"
+  ],
+  "keywords": [
+    "DDD",
+    "Event Sourcing",
+    "Event Store"
+  ],
+  "homepage": "https://github.com/jd78/NodeEventStore",
   "dependencies": {
     "clone": "^1.0.2",
     "guid": "0.0.12",
