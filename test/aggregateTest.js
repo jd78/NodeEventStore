@@ -2,8 +2,10 @@
 
 require("should")
 const aggregate = require("./aggregate/demo")
+const configuration = require("../lib/configuration")
 
 describe('Aggregate Test', () => {
+    
     it('Create aggregate', () => {
         let a = aggregate.create(1)
         a.id.should.equal(1)
@@ -45,7 +47,8 @@ describe('Aggregate Test', () => {
     })
 
     it('create snapshot', () => {
-        let a = aggregate.create(1, 2)
+        configuration.snapshotEvery = 2
+        let a = aggregate.create(1)
         a.initialize('test')
         a.updateName('jd')
 
@@ -57,8 +60,9 @@ describe('Aggregate Test', () => {
         snapshots.payload.should.equal('{"name":"jd"}')
     })
 
-    it('if version does not reach the thresholt, do not create the snapshot', () => {
-        let a = aggregate.create(1, 3)
+    it('if version does not reach the threshold, do not create the snapshot', () => {
+        configuration.snapshotEvery = 3
+        let a = aggregate.create(1)
         a.initialize('test')
         a.updateName('jd')
 

@@ -1,3 +1,4 @@
+delete require.cache[require.resolve('../lib/configuration')]
 const configuration = require("../lib/configuration")
 
 describe("Configuration", () => {
@@ -8,6 +9,10 @@ describe("Configuration", () => {
 	it("get default cacheDeleteCheckInterval value if not set", () => {
 		configuration.cacheDeleteCheckInterval.should.equal(60)
 	})
+	
+	it("get default snapshotEvery value if not set", () => {
+		configuration.snapshotEvery.should.equal(0)
+	})
 
 	it("get cacheExpiration set value", () => {
 		configuration.cacheExpiration = 100
@@ -17,5 +22,10 @@ describe("Configuration", () => {
 	it("get cacheDeleteCheckInterval set value", () => {
 		configuration.cacheDeleteCheckInterval = 120
 		configuration.cacheDeleteCheckInterval.should.equal(120)
+	})
+	
+	it("get snapshotEvery set value", () => {
+		configuration.snapshotEvery = 50
+		configuration.snapshotEvery.should.equal(50)
 	})
 })

@@ -13,8 +13,8 @@ let _demoObj
 
 class Demo extends Aggregate {
 
-    constructor(id, snapshotEvery) {
-        super(id, snapshotEvery)
+    constructor(id) {
+        super(id)
         _demoObj = new DemoObj()
     }
     
@@ -28,8 +28,8 @@ class Demo extends Aggregate {
     }
     //end
 
-    static create(id, snapshotEvery) {
-        return new Demo(id, snapshotEvery)
+    static create(id) {
+        return new Demo(id)
     }
     
     //Query

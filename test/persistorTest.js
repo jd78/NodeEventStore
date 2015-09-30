@@ -6,6 +6,7 @@ const Persistor = require("../lib/persistor")
 const inMemoryAdapter = require("../lib/in-memory-persistence")
 const sinon = require("sinon")
 const cache = require("../lib/cache")
+const configuration = require("../lib/configuration")
 
 describe('Save Aggregate', () => {
 
@@ -23,10 +24,10 @@ describe('Save Aggregate', () => {
     })
 
     it('Create aggregate with snapshot', () => {
-        let a = aggregate.create(1, 2)
+        configuration.snapshotEvery = 2
+        let a = aggregate.create(1)
         a.initialize('name')
         a.updateName('jd')
-
         a.uncommittedEvents.length.should.equal(2);
         a.uncommittedSnapshots.length.should.equal(1);
 
@@ -62,7 +63,8 @@ describe('Save Aggregate', () => {
     })
 
     it('get aggregate with snapshot', () => {
-        let a = aggregate.create(1, 2)
+        configuration.snapshotEvery = 2
+        let a = aggregate.create(1)
         a.initialize('name')
         a.updateName('name2')
         a.updateName('name3')
@@ -95,7 +97,8 @@ describe('Save Aggregate', () => {
     })
     
     it('get cached', () => {
-        let a = aggregate.create(1, 2)
+        configuration.snapshotEvery = 2
+        let a = aggregate.create(1)
         a.initialize('name')
         a.updateName('name2')
         a.updateName('name3')
