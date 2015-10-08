@@ -3,10 +3,12 @@
 const Aggregate = require("../../lib/aggregate")
 const DemoCreated = require("../dto/demoCreated")
 const NameUpdated = require("../dto/nameUpdated")
+const StreetUpdated = require("../dto/streetUpdated")
 const clone = require("clone")
 
 function DemoObj(){
-    this.name
+    this.name,
+    this.street
 }
 
 let _demoObj
@@ -46,6 +48,10 @@ class Demo extends Aggregate {
         super.raiseEvent(new NameUpdated(name))
     }
     
+    updateStreet(street, hookFn) {
+        super.raiseEvent(new StreetUpdated(street), hookFn)
+    }
+    
     //Event Apply
     DemoCreated(payload) {
         _demoObj.name = payload.name
@@ -53,6 +59,10 @@ class Demo extends Aggregate {
 
     NameUpdated(payload) {
         _demoObj.name = payload.name
+    }
+    
+    StreetUpdated(payload) {
+        _demoObj.street = payload.street
     }
 }
 
