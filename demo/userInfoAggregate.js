@@ -43,8 +43,8 @@ class UserInfo extends NodeEventStore.Aggregate {
         super.raiseEvent(new AddressUpdated(address))
     }
     
-    updateMobile(mobile) {
-        super.raiseEvent(new MobileUpdated(mobile))
+    updateMobile(mobile, hookFn) {
+        super.raiseEvent(new MobileUpdated(mobile), hookFn)
     }
     
     //Apply
