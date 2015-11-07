@@ -13,6 +13,10 @@ describe("Configuration", () => {
 	it("get default snapshotEvery value if not set", () => {
 		configuration.snapshotEvery.should.equal(0)
 	})
+	
+	it("get default zipPayload value if not set", () => {
+		configuration.zipPayload.should.be.false()
+	})
 
 	it("get cacheExpiration set value", () => {
 		configuration.cacheExpiration = 100
@@ -27,5 +31,10 @@ describe("Configuration", () => {
 	it("get snapshotEvery set value", () => {
 		configuration.snapshotEvery = 50
 		configuration.snapshotEvery.should.equal(50)
+	})
+	
+	it("get zipPayload", () => {
+		configuration.zipPayload = true
+		configuration.zipPayload.should.be.true()
 	})
 })
