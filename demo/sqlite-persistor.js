@@ -17,8 +17,8 @@ class SqlitePersistor extends nodeEventStore.PersistenceAdapter {
 
 		this.db.serialize(() => {
 			if (!exists) {
-				this.db.run("CREATE TABLE Events (id TEXT, streamId TEXT, version INTEGER, timestamp TEXT, eventType TEXT, payload TEXT)");
-				this.db.run("CREATE TABLE Snapshots (id TEXT, streamId TEXT, version INTEGER, timestamp TEXT, payload TEXT)");
+				this.db.run("CREATE TABLE Events (id TEXT, streamId TEXT, version INTEGER, timestamp TEXT, eventType TEXT, payload BLOB)");
+				this.db.run("CREATE TABLE Snapshots (id TEXT, streamId TEXT, version INTEGER, timestamp TEXT, payload BLOB)");
 			}
 		});
 	}
@@ -49,7 +49,7 @@ class SqlitePersistor extends nodeEventStore.PersistenceAdapter {
     readSnapshot(id) {
 		const self = this;
         return new Promise((resolve, reject) => {
-			self.db.get("SELECT * FROM Snapshots WHERE streamID = ? ORBER BY version DESC LIMIT 1", id, function (err, row) {
+			self.db.get("SELECT * FROM Snapshots WHERE streamID = ? ORDER BY version DESC LIMIT 1", id, function (err, row) {
 				if (err) return reject(err)
 				console.log(row);
 				resolve(row)
@@ -60,7 +60,7 @@ class SqlitePersistor extends nodeEventStore.PersistenceAdapter {
     //return a promise
     readEvents(id, fromVersion) {
 		return new Promise((resolve, reject) => {
-			self.db.each("SELECT * FROM Events WHERE streamID = ? AND version >= ? ORBER BY version", [id, fromVersion], function (err, row) {
+			self.db.each("SELECT * FROM Events WHERE streamID = ? AND version >= ? ORDER BY version", [id, fromVersion], function (err, row) {
 				if (err) return reject(err)
 				console.log(row);
 				resolve(row)
