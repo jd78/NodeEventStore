@@ -14,9 +14,8 @@ const EventStore = NodeEventStore.initialize({
 	zipPayload: true
 })
 
+const repository =  new EventStore.Repository(UserInfoAggregate)
 let userInfoAggregate = UserInfoAggregate.create(1)
-const repository =  new EventStore.Repository(userInfoAggregate)
-
 userInfoAggregate.initialize("Gennaro", "Del Sorbo", "Main Street", "09762847")
 
 repository.read(1).then(test => {
