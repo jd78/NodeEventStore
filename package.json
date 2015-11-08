@@ -16,7 +16,8 @@
     "index.js",
     "lib",
     "LICENSE",
-    "README.md"
+    "README.md",
+    "demo"
   ],
   "keywords": [
     "DDD",
