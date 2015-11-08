@@ -22,8 +22,8 @@ class UserInfo extends NodeEventStore.Aggregate {
         _userInfo = new UserInfoObj()
     }
 
-    static create(id, snapshotEvery) {
-        return new UserInfo(id, snapshotEvery)
+    static create(id) {
+        return new UserInfo(id)
     }
     
     snapshot() {

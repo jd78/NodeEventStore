@@ -49,7 +49,7 @@ class SqlitePersistor extends nodeEventStore.PersistenceAdapter {
     readSnapshot(id) {
 		const self = this;
         return new Promise((resolve, reject) => {
-			self.db.get("SELECT * FROM Snapshots WHERE streamID = ? ORDER BY version DESC LIMIT 1", id, function (err, row) {
+			self.db.get("SELECT * FROM Snapshots WHERE streamId = ? ORDER BY version DESC LIMIT 1", [id], function (err, row) {
 				if (err) return reject(err)
 				console.log(row);
 				resolve(row)
@@ -60,7 +60,7 @@ class SqlitePersistor extends nodeEventStore.PersistenceAdapter {
     //return a promise
     readEvents(id, fromVersion) {
 		return new Promise((resolve, reject) => {
-			self.db.each("SELECT * FROM Events WHERE streamID = ? AND version >= ? ORDER BY version", [id, fromVersion], function (err, row) {
+			self.db.each("SELECT * FROM Events WHERE streamId = ? AND version >= ? ORDER BY version", [id, fromVersion], function (err, row) {
 				if (err) return reject(err)
 				console.log(row);
 				resolve(row)
