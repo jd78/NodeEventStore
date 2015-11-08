@@ -19,21 +19,21 @@ const repository =  new EventStore.Repository(userInfoAggregate)
 
 userInfoAggregate.initialize("Gennaro", "Del Sorbo", "Main Street", "09762847")
 
-// repository.read(1).then(test => {
-// 	console.log(test)
-// }).catch(e => {
-// 	console.log(e)
-// });
+repository.read(1).then(test => {
+	console.log(test)
+}).catch(e => {
+	console.log(e)
+});
 
-repository.save(userInfoAggregate).then(() => {
-	userInfoAggregate.updateMobile("333");
-	userInfoAggregate.updateMobile("334");
-	userInfoAggregate.updateMobile("335");
-	userInfoAggregate.updateAddress("12, Main St.")
-	userInfoAggregate.updateAddress("15, Main St.")
-	repository.save(userInfoAggregate).then(() => {
-		console.log("all saved")
-	})
-}).catch(err => {
-	console.log(err)
-})
+// repository.save(userInfoAggregate).then(() => {
+// 	userInfoAggregate.updateMobile("333");
+// 	userInfoAggregate.updateMobile("334");
+// 	userInfoAggregate.updateMobile("335");
+// 	userInfoAggregate.updateAddress("12, Main St.")
+// 	userInfoAggregate.updateAddress("15, Main St.")
+// 	repository.save(userInfoAggregate).then(() => {
+// 		console.log("all saved")
+// 	})
+// }).catch(err => {
+// 	console.log(err)
+// })
