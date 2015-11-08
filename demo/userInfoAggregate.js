@@ -6,7 +6,7 @@ const AddressUpdated = require("./dto/addressUpdated")
 const MobileUpdated = require("./dto/mobileUpdated")
 const clone = require("clone")
 
-function UserInfoObj(){
+function UserInfoObj() {
     this.name
     this.surname
     this.address
@@ -25,13 +25,22 @@ class UserInfo extends NodeEventStore.Aggregate {
     static create(id) {
         return new UserInfo(id)
     }
-    
+
     snapshot() {
         return clone(_userInfo)
     }
 
     applySnapshot(payload) {
         _userInfo = payload
+    }
+    
+    //Queries
+    get Mobile() {
+        return _userInfo.mobile
+    }
+
+    get Address() {
+        return _userInfo.address
     }
     
     //Mutators
@@ -42,7 +51,7 @@ class UserInfo extends NodeEventStore.Aggregate {
     updateAddress(address) {
         super.raiseEvent(new AddressUpdated(address))
     }
-    
+
     updateMobile(mobile, hookFn) {
         super.raiseEvent(new MobileUpdated(mobile), hookFn)
     }
@@ -58,7 +67,7 @@ class UserInfo extends NodeEventStore.Aggregate {
     AddressUpdated(payload) {
         _userInfo.address = payload.address
     }
-    
+
     MobileUpdated(payload) {
         _userInfo.mobile = payload.mobile
     }
