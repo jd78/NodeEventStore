@@ -1,6 +1,8 @@
 NodeEventStore
 ========================
 
+You need Node.js 4+ to use it!
+
 ## Installation
     $ npm install NodeEventStore
 
@@ -10,7 +12,7 @@ A full example is provided in the demo folder.
 To run it:
 - cd to the demo folder
 - npm install
-- node event-store-demo.js    
+- node event-store-demo.js
 
 # Domain and DTOs
 
