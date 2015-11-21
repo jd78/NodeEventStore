@@ -1,5 +1,5 @@
 {
-  "name": "NodeEventStore",
+  "name": "node-event-store",
   "version": "1.0.0",
   "description": "CQRS and Event Sourcing for Node.js 4+, supporting snapshots, built-in cache, hooks and payload compression",
   "main": "index.js",

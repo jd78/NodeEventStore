@@ -1,6 +1,6 @@
 "use strict"
 
-const NodeEventStore = require("NodeEventStore")
+const NodeEventStore = require("node-event-store")
 const UserInfoCreated = require("./dto/userInfoCreated")
 const AddressUpdated = require("./dto/addressUpdated")
 const MobileUpdated = require("./dto/mobileUpdated")

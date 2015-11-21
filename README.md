@@ -4,7 +4,7 @@ NodeEventStore
 You need Node.js 4+ to use it!
 
 ## Installation
-    $ npm install NodeEventStore
+    $ npm install node-event-store
 
 ## Working example
 
@@ -84,7 +84,7 @@ module.exports = UserInfoCreated
 ```js
 "use strict"
 
-const NodeEventStore = require("NodeEventStore")
+const NodeEventStore = require("node-event-store")
 const UserInfoCreated = require("./dto/userInfoCreated")
 const AddressUpdated = require("./dto/addressUpdated")
 const MobileUpdated = require("./dto/mobileUpdated")
@@ -175,7 +175,7 @@ Below an example how to implement a sqlite persistor.
 ```js
 "use strict"
 
-const nodeEventStore = require("NodeEventStore")
+const nodeEventStore = require("node-event-store")
 const fs = require("fs");
 const sqlite3 = require("sqlite3").verbose();
 const _ = require("underscore")
@@ -281,7 +281,7 @@ The parameters are:
 
 "use strict"
 
-const NodeEventStore = require("NodeEventStore")
+const NodeEventStore = require("node-event-store")
 const UserInfoAggregate = require("./userInfoAggregate")
 const mobileUpdatedHook = require("./mobile-updated-hook")
 
