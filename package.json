@@ -1,7 +1,7 @@
 {
   "name": "NodeEventStore",
   "version": "1.0.0",
-  "description": "Node.js Event Sourcing supporting snapshots, caching and hooks",
+  "description": "CQRS and Event Sourcing for Node.js 4+, supporting snapshots, built-in cache, hooks and payload compression",
   "main": "index.js",
   "repository": {
     "type": "git",
