@@ -1,6 +1,6 @@
 {
   "name": "cqrs-eventstore",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CQRS and Event Sourcing for Node.js 4+, supporting snapshots, built-in cache, hooks and payload compression",
   "main": "index.js",
   "repository": {
@@ -22,7 +22,8 @@
   "keywords": [
     "DDD",
     "Event Sourcing",
-    "Event Store"
+    "Event Store",
+    "CQRS"
   ],
   "homepage": "https://github.com/jd78/NodeEventStore",
   "dependencies": {
