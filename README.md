@@ -1,10 +1,10 @@
-NodeEventStore
+CQRS-EventStore
 ========================
 
 You need Node.js 4+ to use it!
 
 ## Installation
-    $ npm install node-event-store
+    $ npm install cqrs-eventstore
 
 ## Working example
 
@@ -16,7 +16,7 @@ To run it:
 
 # Domain and DTOs
 
-In order to use NodeEventStore, you need to implement your own aggregate and DTOs. Your aggregate must extend NodeEventStore.Aggregate.
+In order to use CQRS-EventStore, you need to implement your own aggregate and DTOs. Your aggregate must extend Aggregate.
 
 An aggregate example including the DTOs:
 
@@ -84,7 +84,7 @@ module.exports = UserInfoCreated
 ```js
 "use strict"
 
-const NodeEventStore = require("node-event-store")
+const NodeEventStore = require("cqrs-eventstore")
 const UserInfoCreated = require("./dto/userInfoCreated")
 const AddressUpdated = require("./dto/addressUpdated")
 const MobileUpdated = require("./dto/mobileUpdated")
@@ -165,7 +165,7 @@ module.exports = {
 
 ## Implementing the persistence layer
 
-In order to implement your own persistence layer, you need to extend nodeEventStore.PersistenceAdapter and register it into the configurator (I'll show it later).
+In order to implement your own persistence layer, you need to extend PersistenceAdapter and register it into the configurator (I'll show it later).
 The methods save, readSnapshot and readEvents must be implemented. All methods must return a promise.
 In the save method you need to persist your events and snapshot.
 
@@ -175,7 +175,7 @@ Below an example how to implement a sqlite persistor.
 ```js
 "use strict"
 
-const nodeEventStore = require("node-event-store")
+const nodeEventStore = require("cqrs-eventstore")
 const fs = require("fs");
 const sqlite3 = require("sqlite3").verbose();
 const _ = require("underscore")
@@ -247,7 +247,7 @@ module.exports = new SqlitePersistor()
 
 ## Implementing hooks
 
-NodeEventStore comes with a build-in hook functionality. We can execute a task after each commands.
+CQRS-EventStore comes with a build-in hook functionality. We can execute a task after each commands.
 
 A simple hook that print into the console on each mobile number update:
 
@@ -265,7 +265,7 @@ Hooks need to be registered into the configurator
 
 ## Configuration
 
-Before to use NodeEventStore, we need to configure it.
+Before to use CQRS-EventStore, we need to configure it.
 
 The parameters are:
 
@@ -281,7 +281,7 @@ The parameters are:
 
 "use strict"
 
-const NodeEventStore = require("node-event-store")
+const NodeEventStore = require("cqrs-eventstore")
 const UserInfoAggregate = require("./userInfoAggregate")
 const mobileUpdatedHook = require("./mobile-updated-hook")
 

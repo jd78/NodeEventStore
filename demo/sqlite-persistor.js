@@ -1,6 +1,6 @@
 "use strict"
 
-const nodeEventStore = require("node-event-store")
+const nodeEventStore = require("cqrs-eventstore")
 const fs = require("fs");
 const sqlite3 = require("sqlite3").verbose();
 const _ = require("underscore")
