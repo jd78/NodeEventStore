@@ -1,18 +1,18 @@
 "use strict"
 
 require("should")
-const aggregate = require("./aggregate/demo")
+const Aggregate = require("./aggregate/demo")
 const configuration = require("../lib/configuration")
 
 describe('Aggregate Test', () => {
     
     it('Create aggregate', () => {
-        let a = aggregate.create(1)
+        let a = new Aggregate(1)
         a.id.should.equal(1)
     })
 
     it('update aggregate', () => {
-        let a = aggregate.create(1)
+        let a = new Aggregate(1)
         a.initialize('test')
         a.name.should.equal('test')
 
@@ -26,7 +26,7 @@ describe('Aggregate Test', () => {
     })
 
     it('update aggregate twice', () => {
-        let a = aggregate.create(1)
+        let a = new Aggregate(1)
         a.initialize('test')
         a.updateName('jd')
 
@@ -39,7 +39,7 @@ describe('Aggregate Test', () => {
     })
 
     it('if snapshot not defined, ignore snapshot', () => {
-        let a = aggregate.create(1)
+        let a = new Aggregate(1)
         a.initialize('test')
         a.updateName('jd')
 
@@ -48,7 +48,7 @@ describe('Aggregate Test', () => {
 
     it('create snapshot', () => {
         configuration.snapshotEvery = 2
-        let a = aggregate.create(1)
+        let a = new Aggregate(1)
         a.initialize('test')
         a.updateName('jd')
 
@@ -62,7 +62,7 @@ describe('Aggregate Test', () => {
 
     it('if version does not reach the threshold, do not create the snapshot', () => {
         configuration.snapshotEvery = 3
-        let a = aggregate.create(1)
+        let a = new Aggregate(1)
         a.initialize('test')
         a.updateName('jd')
 

@@ -2,7 +2,7 @@
 
 require("should")
 const sinon = require("sinon")
-const aggregate = require("./aggregate/demo")
+const Aggregate = require("./aggregate/demo")
 const Persistor = require("../lib/persistor")
 const hook = require("../lib/hook")
 
@@ -17,7 +17,7 @@ describe("Hook", () => {
 		
 		hook.register("StreetUpdated", StreetHook)
 		
-		let a = aggregate.create(1)
+		let a = new Aggregate(1)
         a.initialize('test')
 		a.updateStreet("Main Street", StreetHook)
 		

@@ -1,7 +1,7 @@
 "use strict"
 
 require("should")
-const aggregate = require("./aggregate/demo")
+const Aggregate = require("./aggregate/demo")
 const Persistor = require("../lib/persistor")
 const inMemoryAdapter = require("../lib/in-memory-persistence")
 const sinon = require("sinon")
@@ -13,7 +13,7 @@ describe('Save Aggregate', () => {
     beforeEach(() => inMemoryAdapter.clean())
 
     it('Create aggregate', () => {
-        let a = aggregate.create(1)
+        let a = new Aggregate(1)
         a.initialize('name')
         a.updateName('jd')
 
@@ -25,7 +25,7 @@ describe('Save Aggregate', () => {
 
     it('Create aggregate with snapshot', () => {
         configuration.snapshotEvery = 2
-        let a = aggregate.create(1)
+        let a = new Aggregate(1)
         a.initialize('name')
         a.updateName('jd')
         a.uncommittedEvents.length.should.equal(2);
@@ -40,7 +40,7 @@ describe('Save Aggregate', () => {
     
     it('get aggregate not found', () => {
         cache.removeAll()
-        let persistor = new Persistor(aggregate)
+        let persistor = new Persistor(Aggregate)
     
         return persistor.read(1).then(aggregate => {
             (aggregate === null).should.be.true();
@@ -48,11 +48,11 @@ describe('Save Aggregate', () => {
     })
 
     it('get aggregate', () => {
-        let a = aggregate.create(1)
+        let a = new Aggregate(1)
         a.initialize('name')
         a.updateName('jd')
 
-        let persistor = new Persistor(aggregate)
+        let persistor = new Persistor(Aggregate)
 
         return persistor.save(a).then(() => {
             return persistor.read(1).then(aggregate => {
@@ -64,14 +64,14 @@ describe('Save Aggregate', () => {
 
     it('get aggregate with snapshot', () => {
         configuration.snapshotEvery = 2
-        let a = aggregate.create(1)
+        let a = new Aggregate(1)
         a.initialize('name')
         a.updateName('name2')
         a.updateName('name3')
         a.updateName('name4')
         a.updateName('final')
 
-        let persistor = new Persistor(aggregate)
+        let persistor = new Persistor(Aggregate)
         let readSnapshotSpy = sinon.spy(inMemoryAdapter, "readSnapshot")
         var readEventsSpy = sinon.spy(inMemoryAdapter, "readEvents")
 
@@ -98,14 +98,14 @@ describe('Save Aggregate', () => {
     
     it('get cached', () => {
         configuration.snapshotEvery = 2
-        let a = aggregate.create(1)
+        let a = new Aggregate(1)
         a.initialize('name')
         a.updateName('name2')
         a.updateName('name3')
         a.updateName('name4')
         a.updateName('final')
 
-        let persistor = new Persistor(aggregate)
+        let persistor = new Persistor(Aggregate)
         let readSnapshotSpy = sinon.spy(inMemoryAdapter, "readSnapshot")
         var readEventsSpy = sinon.spy(inMemoryAdapter, "readEvents")
 
