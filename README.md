@@ -179,7 +179,7 @@ const fs = require("fs");
 const sqlite3 = require("sqlite3").verbose();
 const _ = require("underscore")
 const util = require("util")
-const Guid = require("guid")
+const uuid = require("uuid")
 
 class SqlitePersistor extends nodeEventStore.PersistenceAdapter {
 	constructor() {
@@ -204,10 +204,10 @@ class SqlitePersistor extends nodeEventStore.PersistenceAdapter {
 				try {
 					self.db.run("BEGIN TRANSACTION")
 					_.each(events, (e) => {
-						self.db.run("INSERT INTO Events VALUES (?, ?, ?, ?, ?, ?)", Guid.raw(), e.streamId, e.version, new Date(), e.eventType, e.payload)
+						self.db.run("INSERT INTO Events VALUES (?, ?, ?, ?, ?, ?)", uuid.v4(), e.streamId, e.version, new Date(), e.eventType, e.payload)
 					})
 					_.each(snapshots, (e) => {
-						self.db.run("INSERT INTO Snapshots VALUES (?, ?, ?, ?, ?)", Guid.raw(), e.streamId, e.version, new Date(), e.payload)
+						self.db.run("INSERT INTO Snapshots VALUES (?, ?, ?, ?, ?)", uuid.v4(), e.streamId, e.version, new Date(), e.payload)
 					})
 					self.db.run("COMMIT TRANSACTION")
 					resolve()
