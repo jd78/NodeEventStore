@@ -42,6 +42,9 @@
     "sinon": "^1.17.6"
   },
   "scripts": {
-    "test-debug": "node --debug-brk ./node_modules/gulp/bin/gulp.js"
+    "build": "npm install && cd demo && npm install && cd ..",
+    "start": "node demo/event-store-demo.js",
+    "test": "node_modules/.bin/gulp",
+    "test-debug": "node --debug-brk node_modules/gulp/bin/gulp.js"
   }
 }

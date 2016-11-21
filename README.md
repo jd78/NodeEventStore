@@ -322,3 +322,21 @@ repository.save(userInfoAggregate).then(() => {
 	console.log(err)
 })
 ```
+
+## Contributing
+
+1. `clone` this repo
+
+2. `npm run build`
+
+### Run the demo
+
+`npm start`
+
+### Run the tests
+
+`npm test`
+
+### Run the tests and listen for a debugger
+
+`npm run test-debug`
