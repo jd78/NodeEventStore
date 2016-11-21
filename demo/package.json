@@ -11,7 +11,6 @@
   "dependencies": {
     "cqrs-eventstore": "^1.0.0",
     "clone": "^1.0.2",
-    "guid": "0.0.12",
     "sqlite3": "^3.1.0",
     "underscore": "^1.8.3"
   }
