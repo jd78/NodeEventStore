@@ -18,6 +18,10 @@ describe("Configuration", () => {
 		configuration.zipPayload.should.be.false()
 	})
 
+	it("get default payloadSerializationFormat value if not set", () => {
+		configuration.payloadSerializationFormat.should.equal(configuration.serializationFormats.stringify)
+	})
+
 	it("get cacheExpiration set value", () => {
 		configuration.cacheExpiration = 100
 		configuration.cacheExpiration.should.equal(100)
