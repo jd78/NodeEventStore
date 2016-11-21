@@ -3,19 +3,19 @@
 	// List of configurations. Add new configurations or edit existing ones.
 	"configurations": [
 		{
+			"request": "launch",
 			// Name of configuration; appears in the launch configuration drop down menu.
-			"name": "Launch index.js",
+			"name": "Launch demo",
 			// Type of configuration.
 			"type": "node",
 			// Workspace relative or absolute path to the program.
-			"program": "demo/event-store-demo.js",
+			"program": "${workspaceRoot}/demo/event-store-demo.js",
 			// Automatically stop program after launch.
 			"stopOnEntry": false,
 			// Command line arguments passed to the program.
-			"args": [],
+			"args": [ ],
 			// Workspace relative or absolute path to the working directory of the program being debugged. Default is the current workspace.
-			"cwd": ".",
-			// Workspace relative or absolute path to the runtime executable to be used. Default is the runtime executable on the PATH.
+			"cwd": "${workspaceRoot}/demo",
 			"runtimeExecutable": null,
 			// Optional arguments passed to the runtime executable.
 			"runtimeArgs": ["--nolazy"],
@@ -29,6 +29,7 @@
 			"outDir": null
 		},
 		{
+			"request": "attach",
 			"name": "Attach",
 			"type": "node",
 			// TCP/IP address. Default is "localhost".
