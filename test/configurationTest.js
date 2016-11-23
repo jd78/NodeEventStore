@@ -1,5 +1,6 @@
 delete require.cache[require.resolve('../lib/configuration')]
 const configuration = require("../lib/configuration")
+const serializationFormats = require("../lib/serialization-formats")();
 
 describe("Configuration", () => {
 	it("get default cacheExpiration value if not set", () => {
@@ -13,13 +14,9 @@ describe("Configuration", () => {
 	it("get default snapshotEvery value if not set", () => {
 		configuration.snapshotEvery.should.equal(0)
 	})
-	
-	it("get default zipPayload value if not set", () => {
-		configuration.zipPayload.should.be.false()
-	})
 
 	it("get default payloadSerializationFormat value if not set", () => {
-		configuration.payloadSerializationFormat.should.equal(configuration.serializationFormats.stringify)
+		configuration.payloadSerializationFormat.should.equal(serializationFormats.stringify)
 	})
 
 	it("get cacheExpiration set value", () => {
@@ -37,8 +34,23 @@ describe("Configuration", () => {
 		configuration.snapshotEvery.should.equal(50)
 	})
 	
-	it("get zipPayload", () => {
+	it("set deprecated zipPayload", () => {
 		configuration.zipPayload = true
-		configuration.zipPayload.should.be.true()
+		configuration.payloadSerializationFormat.should.equal(serializationFormats.zip)
+	})
+
+	it("get default payloadSerializationFormat if set to stringify", () => {
+		configuration.payloadSerializationFormat = serializationFormats.stringify
+		configuration.payloadSerializationFormat.should.equal(serializationFormats.stringify)
+	})
+
+	it("get default payloadSerializationFormat if set to zip", () => {
+		configuration.payloadSerializationFormat = serializationFormats.zip
+		configuration.payloadSerializationFormat.should.equal(serializationFormats.zip)
+	})
+
+	it("get default payloadSerializationFormat if set to unserialized", () => {
+		configuration.payloadSerializationFormat = serializationFormats.unserialized
+		configuration.payloadSerializationFormat.should.equal(serializationFormats.unserialized)
 	})
 })
