@@ -46,7 +46,7 @@ describe("Serializer test", () => {
 		deserialized.title.should.equal(obj.title)
 	})
 
-	it("unserialized serialization returns cloned object", () => {
+	it("unserialized serialization returns original object", () => {
 		configuration.payloadSerializationFormat = serializationFormats.unserialized;
 
 		let obj = {
@@ -54,11 +54,10 @@ describe("Serializer test", () => {
 		};
 
 		let serialized = serializer.serialize(obj);
+		
 		var isObject = serialized !== null && typeof serialized === 'object';
-
 		isObject.should.be.true;
-		serialized.title.should.equal(obj.title)
-		// clone, not same reference
-		(serialized == obj).should.be.false;
+		serialized.title.should.equal(obj.title);
+		(serialized == obj).should.be.true;
 	})
 })
