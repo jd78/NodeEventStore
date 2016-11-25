@@ -20,7 +20,7 @@ describe("Serializer test", () => {
 		deserialized.title.should.equal(obj.title)
 	})
 
-	it("zip serialization test is translatable", () => {
+	it("zip serialization is translatable", () => {
 		configuration.payloadSerializationFormat = serializationFormats.zip;
 
 		let obj = {
@@ -33,7 +33,7 @@ describe("Serializer test", () => {
 		deserialized.title.should.equal(obj.title)
 	})
 
-	it("unserialized serialization test is translatable", () => {
+	it("unserialized serialization is translatable", () => {
 		configuration.payloadSerializationFormat = serializationFormats.unserialized;
 
 		let obj = {
@@ -59,5 +59,29 @@ describe("Serializer test", () => {
 		isObject.should.be.true;
 		serialized.title.should.equal(obj.title);
 		(serialized == obj).should.be.true;
+	})
+
+	it("stringify serialization returns stringified object", () => {
+		configuration.payloadSerializationFormat = serializationFormats.stringify;
+
+		let obj = {
+			title: "test"
+		};
+
+		let serialized = serializer.serialize(obj);
+		
+		serialized.should.equal("{\"title\":\"test\"}");
+	})
+
+	it("zip serialization returns zipped object", () => {
+		configuration.payloadSerializationFormat = serializationFormats.zip;
+
+		let obj = {
+			title: "test"
+		};
+
+		let serialized = serializer.serialize(obj);
+		
+		serialized.byteLength.should.equal(36);
 	})
 })
