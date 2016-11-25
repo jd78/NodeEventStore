@@ -44,7 +44,7 @@
   },
   "scripts": {
     "clean-demo-lib": "node_modules/.bin/rimraf demo/node_modules/cqrs-eventstore",
-    "build": "npm install && npm run clean-demo-lib && cd demo && npm install && cd ..",
+    "setup": "npm install && npm run clean-demo-lib && cd demo && npm install && cd ..",
     "start": "node demo/event-store-demo.js",
     "test": "node_modules/.bin/gulp",
     "test-debug": "node --debug-brk node_modules/gulp/bin/gulp.js"
