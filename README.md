@@ -327,7 +327,7 @@ repository.save(userInfoAggregate).then(() => {
 
 1. `clone` this repo
 
-2. `npm run build`
+2. `npm run setup`
 
 ### Run the demo
 
