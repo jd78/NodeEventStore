@@ -272,7 +272,8 @@ The parameters are:
 - cacheDeleteCheckInterval: The period in seconds, used for the automatic delete check interval. Default is 60 seconds.
 - repository: your extended persistance layer, if not provived an in-memory persistence will be used.
 - snapshotEvery: event threshold for the snapshot, the default is 0 (snapshot disabled). For example, if we assign 50, every 50 events we create the snapshot.
-- zipPayload: payload compression, default is false.
+- payloadSerializationFormat: payload serialization/compression, default is NodeEventStore.serializationFormats.stringify  
+  The "cqrs-eventstore" module exposes an 'enumeration' called `serializationFormats`. Available values are: `stringify`, `zip`, `unserialized`.
 
 ## Usage Example
 
@@ -293,7 +294,7 @@ const EventStore = NodeEventStore.initialize({
 	cacheDeleteCheckInterval: 60,
 	repository: require("./sqlite-persistor"),
 	snapshotEvery: 5,
-	zipPayload: true
+	payloadSerializationFormat: NodeEventStore.serializationFormats.zip
 })
 
 const repository =  new EventStore.Repository(UserInfoAggregate)
