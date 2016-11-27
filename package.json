@@ -1,6 +1,6 @@
 {
   "name": "cqrs-eventstore",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "CQRS and Event Sourcing for Node.js 4+, supporting snapshots, built-in cache, hooks and payload compression",
   "main": "index.js",
   "repository": {
@@ -48,5 +48,9 @@
     "start": "node demo/event-store-demo.js",
     "test": "node_modules/.bin/gulp",
     "test-debug": "node --debug-brk node_modules/gulp/bin/gulp.js"
-  }
+  },
+  "contributors": [
+    "Gennaro Del Sorbo (https://github.com/jd78)",
+    "Jordan Morris <gitacode.jordanmorris@spamgourmet.com> (https://github.com/jordanmorris)"
+  ]
 }
