@@ -11,7 +11,7 @@ const EventStore = NodeEventStore.initialize({
 	cacheDeleteCheckInterval: 60,
 	repository: require("./sqlite-persistor"),
 	snapshotEvery: 5,
-	zipPayload: true
+	payloadSerializationFormat: NodeEventStore.serializationFormats.zip
 })
 
 const repository =  new EventStore.Repository(UserInfoAggregate)

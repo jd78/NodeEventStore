@@ -1,6 +1,6 @@
 {
   "name": "cqrs-eventstore",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "CQRS and Event Sourcing for Node.js 4+, supporting snapshots, built-in cache, hooks and payload compression",
   "main": "index.js",
   "repository": {
@@ -38,11 +38,13 @@
     "gulp": "^3.9.1",
     "gulp-mocha": "^3.0.1",
     "mocha": "^3.1.2",
+    "rimraf": "^2.5.4",
     "should": "^11.1.1",
     "sinon": "^1.17.6"
   },
   "scripts": {
-    "build": "npm install && cd demo && npm install && cd ..",
+    "clean-demo-lib": "node_modules/.bin/rimraf demo/node_modules/cqrs-eventstore",
+    "setup": "npm install && npm run clean-demo-lib && cd demo && npm install && cd ..",
     "start": "node demo/event-store-demo.js",
     "test": "node_modules/.bin/gulp",
     "test-debug": "node --debug-brk node_modules/gulp/bin/gulp.js"

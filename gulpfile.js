@@ -6,7 +6,8 @@ gulp.task('default', function () {
         './test/hookTest.js', './test/configurationTest.js', './test/serializerTest.js'],
         { read: false })
         .pipe(mocha({ reporter: 'spec' }))
-        .once('error', function () {
+        .once('error', function (err) {
+            console.error(err);
             process.exit(1);
         })
         .once('end', function () {
